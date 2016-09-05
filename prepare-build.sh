@@ -53,9 +53,14 @@ case ${1} in
             git clone https://github.com/AsteroidOS/meta-bass-hybris src/meta-bass-hybris
         fi
         ;;
-    *)
+    dory)
         if [ ! -d src/meta-dory-hybris ] ; then
             git clone https://github.com/AsteroidOS/meta-dory-hybris src/meta-dory-hybris
+        fi
+        ;;
+    *)
+        if [ ! -d src/meta-${1}-hybris ] ; then
+            git clone https://github.com/AsteroidOS/meta-${1}-hybris src/meta-${1}-hybris
         fi
         ;;
 #    newWatch)
@@ -83,9 +88,14 @@ EOF
 MACHINE ??= "bass"
 EOF
             ;;
-        *)
+        dory)
             cat > $ROOTDIR/build/conf/local.conf << EOF
 MACHINE ??= "dory"
+EOF
+            ;;
+        *)
+            cat > $ROOTDIR/build/conf/local.conf << EOF
+MACHINE ??= "${1}"
 EOF
             ;;
 #        newWatch)
@@ -150,9 +160,15 @@ EOF
   "
 EOF
             ;;
-        *)
+        dory)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-dory-hybris \\
+  "
+EOF
+            ;;
+        *)
+            cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
+  $ROOTDIR/src/meta-${1}-hybris \\
   "
 EOF
             ;;
