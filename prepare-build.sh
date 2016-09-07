@@ -48,9 +48,9 @@ case ${1} in
             git clone https://github.com/AsteroidOS/meta-tetra-hybris src/meta-tetra-hybris
         fi
         ;;
-    bass)
-        if [ ! -d src/meta-bass-hybris ] ; then
-            git clone https://github.com/AsteroidOS/meta-bass-hybris src/meta-bass-hybris
+    bass|nemo)
+        if [ ! -d src/meta-$1-hybris ] ; then
+            git clone https://github.com/theappleman/meta-bass-hybris src/meta-$1-hybris
         fi
         ;;
     dory)
